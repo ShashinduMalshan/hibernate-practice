@@ -4,6 +4,9 @@ import com.assignment.service.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -11,25 +14,32 @@ public class Main {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
+        Laptop laptop1 = new Laptop();
+        laptop1.setLid(1);
+        laptop1.setName("Asus");
 
-        Laptop laptop = new Laptop();
-        laptop.setLid(2);
-        laptop.setName("samgsung");
+        Laptop laptop2 = new Laptop();
+        laptop2.setLid(2);
+        laptop2.setName("Mac");
 
-        Student student = new Student();
-        student.setId(2);
-        student.setName("jeon");
-        student.setAddress("panadura");
-        student.setLaptop(laptop);
+        List<Laptop> laptops = new ArrayList<>();
+        laptops.add(laptop1);
+        laptops.add(laptop2);
+
+        Student student1 = new Student();
+        student1.setId(1);
+        student1.setName("kamal");
+        student1.setAddress("Colombo");
+        student1.setLaptop(laptops);
+
+        laptop1.setStudent(student1);
+        laptop2.setStudent(student1);
 
 
-        // session.save(student);
-        // session.update(student);
-//        Student student =session.get(Student.class,1);
-//        System.out.println(student.getName());
+        session.persist(laptop1);
+        session.persist(laptop2);
+        session.persist(student1);
 
-        session.persist(student);
-        session.persist(laptop);
 
 
         transaction.commit();
