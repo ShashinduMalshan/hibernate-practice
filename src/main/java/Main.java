@@ -16,29 +16,39 @@ public class Main {
 
         Laptop laptop1 = new Laptop();
         laptop1.setLid(1);
-        laptop1.setName("Asus");
+        laptop1.setName("Del");
 
         Laptop laptop2 = new Laptop();
         laptop2.setLid(2);
-        laptop2.setName("Mac");
+        laptop2.setName("Hp");
+
+        Student student1 = new Student();
+        student1.setId(1);
+        student1.setName("kamal");
+        student1.setAddress("colombo");
+
+        Student student2 = new Student();
+        student2.setId(2);
+        student2.setName("manula");
+        student2.setAddress("galle");
 
         List<Laptop> laptops = new ArrayList<>();
         laptops.add(laptop1);
         laptops.add(laptop2);
 
-        Student student1 = new Student();
-        student1.setId(1);
-        student1.setName("kamal");
-        student1.setAddress("Colombo");
-        student1.setLaptop(laptops);
+        List<Student> students = new ArrayList<>();
+        students.add(student1);
+        students.add(student2);
 
-        laptop1.setStudent(student1);
-        laptop2.setStudent(student1);
-
+        laptop1.setStudents(students);
+        laptop2.setStudents(students);
+        student1.setLaptops(laptops);
+        student2.setLaptops(laptops);
 
         session.persist(laptop1);
         session.persist(laptop2);
         session.persist(student1);
+        session.persist(student2);
 
 
 
